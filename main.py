@@ -1,20 +1,9 @@
 from display import *
 
-pygame.init()
-
-GAME_VARS={
-    "GRID":create_grid([],settings),
-    "SCORE":0,
-    "BEST_SCORE":scores['BEST_SCORE'],
-}
-
-screen = pygame.display.set_mode(980,660)
-DISPLAYSURF = pygame.display.set_mode((980, 660))
-
 if __name__ == "__main__":
-    running=True
-    while running:
-        screen.fill(THEME[settings['THEME']]['BACKGROUND'])
+    while GAME_VARS['RUNNING']:
+        SCREEN.fill(theme['BACKGROUND'])
+        draw_grid(settings)
         for event in pygame.event.get():
-            running = ESC_KEYDOWN(running,event)
+            GAME_VARS['RUNNING'] = ESC_KEYDOWN(GAME_VARS['RUNNING'],event)
         pygame.display.update()
