@@ -1,5 +1,5 @@
 {
-    "HEIGHT_BORDER":4,
-    "WIDTH_BORDER":4,
-    "CELL_SIZE": 80
+    "HEIGHT_BORDER":3,
+    "WIDTH_BORDER":3,
+    "CELL_SIZE": 0
 }
