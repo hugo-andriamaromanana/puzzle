@@ -1,7 +1,6 @@
 from display import *
 
 if __name__ == "__main__":
-    WINNING_POS=[str(i) for i in range(1,settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])]+['0']
     running=True
     while running: 
         draw_grid(settings,game_grid)
@@ -10,6 +9,7 @@ if __name__ == "__main__":
             running = ESC_KEYDOWN(event)
             if slide_tiles(settings,game_grid,event):
                 draw_grid(settings,game_grid)
+                score=add_score(score)
             if not check_win(game_grid,WINNING_POS):
                 running=False
             #------------------------------------------------------------

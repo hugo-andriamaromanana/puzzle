@@ -1,6 +1,10 @@
 import pygame
 from pygame.locals import *
+from data import settings
 
+AUTHORIZED_KEYS = [K_DOWN, K_UP, K_LEFT, K_RIGHT]
+WINNING_POS=[str(i) for i in range(1,settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])]+['0']
+score=0
 
 def ESC_KEYDOWN(event):
     if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
@@ -37,3 +41,6 @@ def check_win(game_grid,WINNING_POS):
     if game_grid == WINNING_POS:
         return False
     return True
+
+def add_score(score):
+    return score+1
