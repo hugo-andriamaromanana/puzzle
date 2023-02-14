@@ -1,6 +1,6 @@
 from state import *
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     state = 'Theme'
     running = True
     while running:
@@ -37,8 +37,7 @@ if __name__ == "__main__":
                 if not check_win(game_grid, WINNING_POS):
                     state = 'Menu'
                 # ------------------------------------------------------------
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE:
+                if BACKSPACE_KEYDOWN(event):
                         state = 'Menu'
                 # ------------------------------------------------------------
         pygame.display.update()

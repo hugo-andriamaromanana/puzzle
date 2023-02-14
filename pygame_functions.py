@@ -45,11 +45,11 @@ def check_win(game_grid, WINNING_POS):
 
 def modify_dynamic_font_size(settings):
     if settings['CELL_SIZE'] < 65:
-        return "SMOL"
+        return 'SMOL'
     elif settings['CELL_SIZE'] > 65 and settings['CELL_SIZE'] < 135:
-        return "DEFAULT"
+        return 'DEFAULT'
     else:
-        return "BIG"
+        return 'BIG'
 
 
 def init_game():

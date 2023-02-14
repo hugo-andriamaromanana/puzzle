@@ -8,40 +8,40 @@ pygame.init()
 pygame.font.init()
 
 THEME = {
-    "RETRO": {
-        "BACKGROUND": COLORS["WEIRD_GREEN"],
-        "BORDER": COLORS["WEIRD_GREY"],
-        "FONTS": {
-            "SMOL": pygame.font.Font(os.path.join("fonts", "Retro_Gaming.ttf"), 20),
-            "DEFAULT": pygame.font.Font(os.path.join("fonts", "Retro_Gaming.ttf"), 30),
-            "BIG": pygame.font.Font(os.path.join("fonts", "Retro_Gaming.ttf"), 80)
+    'RETRO': {
+        'BACKGROUND': COLORS['WEIRD_GREEN'],
+        'BORDER': COLORS['WEIRD_GREY'],
+        'FONTS': {
+            'SMOL': pygame.font.Font(os.path.join('fonts', 'Retro_Gaming.ttf'), 20),
+            'DEFAULT': pygame.font.Font(os.path.join('fonts', 'Retro_Gaming.ttf'), 30),
+            'BIG': pygame.font.Font(os.path.join('fonts', 'Retro_Gaming.ttf'), 80)
         }
     },
-    "CLASSIC": {
-        "BACKGROUND": COLORS["CLEAR_BLUE"],
-        "BORDER": COLORS["BLACK"],
-        "FONTS": {
-            "SMOL": pygame.font.SysFont("Comic Sans MS", 23),
-            "DEFAULT": pygame.font.SysFont("Comic Sans MS", 33),
-            "BIG": pygame.font.SysFont("Comic Sans MS", 83)
+    'CLASSIC': {
+        'BACKGROUND': COLORS['CLEAR_BLUE'],
+        'BORDER': COLORS['BLACK'],
+        'FONTS': {
+            'SMOL': pygame.font.SysFont('Comic Sans MS', 23),
+            'DEFAULT': pygame.font.SysFont('Comic Sans MS', 33),
+            'BIG': pygame.font.SysFont('Comic Sans MS', 83)
         }
     },
-    "NEON": {
-        "BACKGROUND": COLORS["PURPLE"],
-        "BORDER": COLORS["LIGHT_BLUE"],
-        "FONTS": {
-            "SMOL": pygame.font.Font(os.path.join("fonts", "Neon.ttf"), 20),
-            "DEFAULT": pygame.font.Font(os.path.join("fonts", "Neon.ttf"), 30),
-            "BIG": pygame.font.Font(os.path.join("fonts", "Neon.ttf"), 80)
+    'NEON': {
+        'BACKGROUND': COLORS['PURPLE'],
+        'BORDER': COLORS['LIGHT_BLUE'],
+        'FONTS': {
+            'SMOL': pygame.font.Font(os.path.join('fonts', 'Neon.ttf'), 20),
+            'DEFAULT': pygame.font.Font(os.path.join('fonts', 'Neon.ttf'), 30),
+            'BIG': pygame.font.Font(os.path.join('fonts', 'Neon.ttf'), 80)
         }
     },
-    "DARK": {
-        "BACKGROUND": COLORS["BLACK"],
-        "BORDER": COLORS["GREY"],
-        "FONTS": {
-            "SMOL": pygame.font.Font(os.path.join("fonts", "Retrolab.ttf"), 20),
-            "DEFAULT": pygame.font.Font(os.path.join("fonts", "Retrolab.ttf"), 30),
-            "BIG": pygame.font.Font(os.path.join("fonts", "Retrolab.ttf"), 100)
+    'DARK': {
+        'BACKGROUND': COLORS['BLACK'],
+        'BORDER': COLORS['GREY'],
+        'FONTS': {
+            'SMOL': pygame.font.Font(os.path.join('fonts', 'Retrolab.ttf'), 20),
+            'DEFAULT': pygame.font.Font(os.path.join('fonts', 'Retrolab.ttf'), 30),
+            'BIG': pygame.font.Font(os.path.join('fonts', 'Retrolab.ttf'), 100)
         }
     },
 }
@@ -51,7 +51,7 @@ SCREEN = pygame.display.set_mode((980, 660))
 RECTANGLE = pygame.Surface((900, 580))
 GAME_DISPLAY = pygame.Surface((860, 540))
 
-current_theme = "DARK"
+current_theme = 'DARK'
 
 
 def display_select_theme(current_theme):
@@ -63,13 +63,13 @@ def display_select_theme(current_theme):
     RECTANGLE.blit(GAME_DISPLAY, (20, 20))
     GAME_DISPLAY.fill(theme['BACKGROUND'])
     GAME_DISPLAY.blit(fonts['BIG'].render(
-        "Select Theme:", True, COLORS['WHITE']), (150, 10))
-    GAME_DISPLAY.blit(THEME["RETRO"]["FONTS"]["DEFAULT"].render(
-        "Press 1 for Retro", True, COLORS['WHITE']), (250, 250))
-    GAME_DISPLAY.blit(THEME["CLASSIC"]["FONTS"]["DEFAULT"].render(
-        "Press 2 for Classic", True, COLORS['WHITE']), (250, 325))
-    GAME_DISPLAY.blit(THEME["NEON"]["FONTS"]["DEFAULT"].render(
-        "Press 3 for Neon", True, COLORS['WHITE']), (250, 425))
+        'Select Theme:', True, COLORS['WHITE']), (150, 10))
+    GAME_DISPLAY.blit(THEME['RETRO']['FONTS']['DEFAULT'].render(
+        'Press 1 for Retro', True, COLORS['WHITE']), (250, 250))
+    GAME_DISPLAY.blit(THEME['CLASSIC']['FONTS']['DEFAULT'].render(
+        'Press 2 for Classic', True, COLORS['WHITE']), (250, 325))
+    GAME_DISPLAY.blit(THEME['NEON']['FONTS']['DEFAULT'].render(
+        'Press 3 for Neon', True, COLORS['WHITE']), (250, 425))
 
 
 def draw_menu(current_theme):
@@ -81,19 +81,19 @@ def draw_menu(current_theme):
     RECTANGLE.blit(GAME_DISPLAY, (20, 20))
     GAME_DISPLAY.fill(theme['BACKGROUND'])
     GAME_DISPLAY.blit(fonts['BIG'].render(
-        "Puzzle Game", True, COLORS['BLACK']), (100, 10))
+        'Puzzle Game', True, COLORS['BLACK']), (100, 10))
     GAME_DISPLAY.blit(fonts['DEFAULT'].render(
-        "Press Enter to start", True, COLORS['BLACK']), (200, 150))
+        'Press Enter to start', True, COLORS['BLACK']), (200, 150))
     GAME_DISPLAY.blit(fonts['DEFAULT'].render(
-        "Press Esc to quit", True, COLORS['BLACK']), (200, 200))
+        'Press Esc to quit', True, COLORS['BLACK']), (200, 200))
     GAME_DISPLAY.blit(fonts['DEFAULT'].render(
-        "Press Backspace to return", True, COLORS['BLACK']), (200, 250))
+        'Press Backspace to return', True, COLORS['BLACK']), (200, 250))
     GAME_DISPLAY.blit(fonts['DEFAULT'].render(
-        "Press X to change grid size: ", True, COLORS['BLACK']), (200, 300))
+        'Press X to change grid size: ', True, COLORS['BLACK']), (200, 300))
     GAME_DISPLAY.blit(fonts['DEFAULT'].render(str(settings['WIDTH_BORDER']) +
-                      "x"+str(settings['HEIGHT_BORDER']), True, COLORS['BLACK']), (400, 350))
+                      'x'+str(settings['HEIGHT_BORDER']), True, COLORS['BLACK']), (400, 350))
     GAME_DISPLAY.blit(fonts['DEFAULT'].render(
-        "Press S for Scoreboard", True, COLORS['WHITE']), (200, 400))
+        'Press S for Scoreboard', True, COLORS['WHITE']), (200, 400))
 
 
 settings['CELL_SIZE'] = int(
@@ -105,7 +105,7 @@ game_grid = [str(i) for i in range(
 
 def draw_grid(settings, game_grid, current_theme, dynamic_font_size):
     theme = THEME[current_theme]
-    fonts = theme["FONTS"]
+    fonts = theme['FONTS']
     active_font = fonts[dynamic_font_size]
     SCREEN.fill(theme['BACKGROUND'])
     SCREEN.blit(RECTANGLE, (40, 40))
