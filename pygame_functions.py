@@ -76,3 +76,6 @@ def change_grid_size(settings):
     if settings['HEIGHT_BORDER'] > 10:
         settings['HEIGHT_BORDER'] = 3
     return settings
+
+def format_grid_size(settings):
+    return str(settings['WIDTH_BORDER'])+'x'+str(settings['HEIGHT_BORDER'])
