@@ -43,26 +43,12 @@ def check_win(game_grid,WINNING_POS):
         return False
     return True
 
+def init_game():
+    global score
+    score=0
+    game_grid = [str(i) for i in range(
+        settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])]
+    return game_grid
+
 def add_score(score):
     return score+1
-
-def select_theme_event(event):
-    global state
-    global current_theme
-    if event.type == pygame.KEYDOWN and event.unicode == '1':
-        current_theme = 'RETRO'
-        state='Menu'
-    
-
-def test_run(event):
-    global current_theme
-    global state
-    if event.type == pygame.KEYDOWN and event.unicode == '1':
-        current_theme = 'RETRO'
-        state='Menu'
-    if event.type == pygame.KEYDOWN and event.unicode == '2':
-        current_theme = 'CLASSIC'
-        state='Menu'
-    if event.type == pygame.KEYDOWN and event.unicode == '3':
-        current_theme = 'NEON'
-        state='Menu'

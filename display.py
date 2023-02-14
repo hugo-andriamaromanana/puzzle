@@ -14,7 +14,7 @@ THEME = {
         "FONTS": {
             "SMOL": pygame.font.Font(os.path.join("fonts", "Retro_Gaming.ttf"), 20),
             "DEFAULT": pygame.font.Font(os.path.join("fonts", "Retro_Gaming.ttf"), 30),
-            "BIG": pygame.font.Font(os.path.join("fonts", "Retro_Gaming.ttf"), 40)
+            "BIG": pygame.font.Font(os.path.join("fonts", "Retro_Gaming.ttf"), 80)
         }
     },
     "CLASSIC": {
@@ -23,7 +23,7 @@ THEME = {
         "FONTS": {
             "SMOL": pygame.font.SysFont("Comic Sans MS", 23),
             "DEFAULT": pygame.font.SysFont("Comic Sans MS", 33),
-            "BIG": pygame.font.SysFont("Comic Sans MS", 43)
+            "BIG": pygame.font.SysFont("Comic Sans MS", 83)
         }
     },
     "NEON": {
@@ -32,7 +32,7 @@ THEME = {
         "FONTS": {
             "SMOL": pygame.font.Font(os.path.join("fonts", "Neon.ttf"), 20),
             "DEFAULT": pygame.font.Font(os.path.join("fonts", "Neon.ttf"), 30),
-            "BIG": pygame.font.Font(os.path.join("fonts", "Neon.ttf"), 40)
+            "BIG": pygame.font.Font(os.path.join("fonts", "Neon.ttf"), 80)
         }
     },
     "DARK": {
@@ -53,17 +53,18 @@ RECTANGLE = pygame.Surface((900, 580))
 GAME_DISPLAY = pygame.Surface((860, 540))
 
 current_theme = "DARK"
-theme = THEME[current_theme]
-fonts = theme["FONTS"]
+
 
 settings['CELL_SIZE'] = int(
     math.sqrt((540*540)//(settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])))
 
 game_grid = [str(i) for i in range(
     settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])]
-active_font = fonts['DEFAULT']
 
-def draw_grid(settings,game_grid):
+def draw_grid(settings,game_grid,current_theme):
+    theme = THEME[current_theme]
+    fonts = theme["FONTS"]
+    active_font = fonts['DEFAULT']
     SCREEN.fill(theme['BACKGROUND'])
     SCREEN.blit(RECTANGLE, (40, 40))
     RECTANGLE.fill(theme['BORDER'])
@@ -85,9 +86,9 @@ def draw_menu(current_theme):
     RECTANGLE.fill(theme['BORDER'])
     RECTANGLE.blit(GAME_DISPLAY, (20, 20))
     GAME_DISPLAY.fill(theme['BACKGROUND'])
-    GAME_DISPLAY.blit(fonts['BIG'].render("Puzzle Game", True, COLORS['BLACK']), (200, 100))
-    GAME_DISPLAY.blit(fonts['DEFAULT'].render("Press Enter to start", True, COLORS['BLACK']), (200, 300))
-    GAME_DISPLAY.blit(fonts['DEFAULT'].render("Press Esc to quit", True, COLORS['BLACK']), (200, 400))
+    GAME_DISPLAY.blit(fonts['BIG'].render("Puzzle Game", True, COLORS['BLACK']), (100, 10))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render("Press Enter to start", True, COLORS['BLACK']), (200, 250))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render("Press Esc to quit", True, COLORS['BLACK']), (200, 325))
 
 def display_select_theme(current_theme):
     theme=THEME[current_theme]
