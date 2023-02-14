@@ -54,42 +54,6 @@ GAME_DISPLAY = pygame.Surface((860, 540))
 
 current_theme = "DARK"
 
-
-settings['CELL_SIZE'] = int(
-    math.sqrt((540*540)//(settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])))
-
-game_grid = [str(i) for i in range(
-    settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])]
-
-def draw_grid(settings,game_grid,current_theme):
-    theme = THEME[current_theme]
-    fonts = theme["FONTS"]
-    active_font = fonts['DEFAULT']
-    SCREEN.fill(theme['BACKGROUND'])
-    SCREEN.blit(RECTANGLE, (40, 40))
-    RECTANGLE.fill(theme['BORDER'])
-    RECTANGLE.blit(GAME_DISPLAY, (20, 20))
-    GAME_DISPLAY.fill(theme['BACKGROUND'])
-    for row in range(settings['HEIGHT_BORDER']):
-        for col in range(settings['WIDTH_BORDER']):
-            pygame.draw.rect(GAME_DISPLAY, COLORS['BLACK'], (col * settings['CELL_SIZE']+160,
-                            row * settings['CELL_SIZE'], settings['CELL_SIZE'], settings['CELL_SIZE']), 1)
-            if game_grid[row*settings['WIDTH_BORDER']+col] != '0':
-                GAME_DISPLAY.blit(active_font.render(game_grid[row*settings['WIDTH_BORDER']+col], True,
-                                COLORS['BLACK']), (col * settings['CELL_SIZE']+160+20, row * settings['CELL_SIZE']+20))
-
-def draw_menu(current_theme):
-    theme=THEME[current_theme]
-    fonts=theme['FONTS']
-    SCREEN.fill(theme['BACKGROUND'])
-    SCREEN.blit(RECTANGLE, (40, 40))
-    RECTANGLE.fill(theme['BORDER'])
-    RECTANGLE.blit(GAME_DISPLAY, (20, 20))
-    GAME_DISPLAY.fill(theme['BACKGROUND'])
-    GAME_DISPLAY.blit(fonts['BIG'].render("Puzzle Game", True, COLORS['BLACK']), (100, 10))
-    GAME_DISPLAY.blit(fonts['DEFAULT'].render("Press Enter to start", True, COLORS['BLACK']), (200, 250))
-    GAME_DISPLAY.blit(fonts['DEFAULT'].render("Press Esc to quit", True, COLORS['BLACK']), (200, 325))
-
 def display_select_theme(current_theme):
     theme=THEME[current_theme]
     fonts=theme['FONTS']
@@ -102,4 +66,43 @@ def display_select_theme(current_theme):
     GAME_DISPLAY.blit(THEME["RETRO"]["FONTS"]["DEFAULT"].render("Press 1 for Retro", True, COLORS['WHITE']), (250, 250))
     GAME_DISPLAY.blit(THEME["CLASSIC"]["FONTS"]["DEFAULT"].render("Press 2 for Classic", True, COLORS['WHITE']), (250, 325))
     GAME_DISPLAY.blit(THEME["NEON"]["FONTS"]["DEFAULT"].render("Press 3 for Neon", True, COLORS['WHITE']), (250, 425))
+
+def draw_menu(current_theme):
+    theme=THEME[current_theme]
+    fonts=theme['FONTS']
+    SCREEN.fill(theme['BACKGROUND'])
+    SCREEN.blit(RECTANGLE, (40, 40))
+    RECTANGLE.fill(theme['BORDER'])
+    RECTANGLE.blit(GAME_DISPLAY, (20, 20))
+    GAME_DISPLAY.fill(theme['BACKGROUND'])
+    GAME_DISPLAY.blit(fonts['BIG'].render("Puzzle Game", True, COLORS['BLACK']), (100, 10))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render("Press Enter to start", True, COLORS['BLACK']), (200, 150))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render("Press Esc to quit", True, COLORS['BLACK']), (200, 200))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render("Press Backspace to return", True, COLORS['BLACK']), (200, 250))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render("Press X to change grid size: ", True, COLORS['BLACK']), (200, 300))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render(str(settings['WIDTH_BORDER'])+"x"+str(settings['HEIGHT_BORDER']), True, COLORS['BLACK']), (400, 350))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render("Press S for Scoreboard", True, COLORS['WHITE']), (200, 400))
+
+settings['CELL_SIZE'] = int(
+    math.sqrt((540*540)//(settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])))
+
+game_grid = [str(i) for i in range(
+    settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])]
+
+def draw_grid(settings,game_grid,current_theme,dynamic_font_size):
+    theme = THEME[current_theme]
+    fonts = theme["FONTS"]
+    active_font = fonts[dynamic_font_size]
+    SCREEN.fill(theme['BACKGROUND'])
+    SCREEN.blit(RECTANGLE, (40, 40))
+    RECTANGLE.fill(theme['BORDER'])
+    RECTANGLE.blit(GAME_DISPLAY, (20, 20))
+    GAME_DISPLAY.fill(theme['BACKGROUND'])
+    for row in range(settings['HEIGHT_BORDER']):
+        for col in range(settings['WIDTH_BORDER']):
+            pygame.draw.rect(GAME_DISPLAY, COLORS['BLACK'], (col * settings['CELL_SIZE']+160,
+                            row * settings['CELL_SIZE'], settings['CELL_SIZE'], settings['CELL_SIZE']), 1)
+            if game_grid[row*settings['WIDTH_BORDER']+col] != '0':
+                GAME_DISPLAY.blit(active_font.render(game_grid[row*settings['WIDTH_BORDER']+col], True,
+                                COLORS['BLACK']), (col * settings['CELL_SIZE']+160+20, row * settings['CELL_SIZE']+20))
 

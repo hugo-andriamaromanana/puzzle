@@ -3,7 +3,6 @@ from state import *
 if __name__ == "__main__": 
     state='Theme'
     running=True
-    current_theme=None
     while running:
         events=pygame.event.get()
         if state=='Theme':
@@ -18,23 +17,27 @@ if __name__ == "__main__":
             draw_menu(current_theme)
             for event in events:
                 running = ESC_KEYDOWN(event)
-                if return_with_backspace(event):
+                if BACKSPACE_KEYDOWN(event):
                     state='Theme'
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
-                    state='Game'
+                if RETURN_KEYDOWN(event):
                     game_grid = init_game()
+                    dynamic_font_size=modify_dynamic_font_size(settings)
+                    print(settings['CELL_SIZE'])
+                    state='Game'
+                if X_KEYDOWN(event):
+                    settings=change_grid_size(settings)
         if state=='Game':
-            draw_grid(settings,game_grid,current_theme)
+            draw_grid(settings,game_grid,current_theme,dynamic_font_size)
             for event in events:
                 running = ESC_KEYDOWN(event)
                 if slide_tiles(settings,game_grid,event):
-                    draw_grid(settings,game_grid,current_theme)
+                    draw_grid(settings,game_grid,current_theme,dynamic_font_size)
                     score=add_score(score)
                 if not check_win(game_grid,WINNING_POS):
                     state='Menu'
                 #------------------------------------------------------------
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
-                        game_grid = ['1', '2', '3', '4', '5', '6', '7', '0', '8']
+                        state = 'Menu'
                 #------------------------------------------------------------
         pygame.display.update()

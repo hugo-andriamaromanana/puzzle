@@ -1,17 +1,13 @@
 import pygame
 from pygame.locals import *
 from data import settings
+import math
 
+#------------------------------------------------------------
 AUTHORIZED_KEYS = [K_DOWN, K_UP, K_LEFT, K_RIGHT]
 WINNING_POS=[str(i) for i in range(1,settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])]+['0']
 score=0
 state='Theme'
-
-def ESC_KEYDOWN(event):
-    if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-        return False
-    return True
-
 
 def slide_tiles(settings, game_grid, event):
     zero_index = game_grid.index('0')
@@ -37,18 +33,39 @@ def slide_tiles(settings, game_grid, event):
             game_grid[zero_index], game_grid[zero_index +
                                              1] = game_grid[zero_index + 1], game_grid[zero_index]
         return True
-            
+
 def check_win(game_grid,WINNING_POS):
     if game_grid == WINNING_POS:
         return False
     return True
+
+
+def modify_dynamic_font_size(settings):
+    if settings['CELL_SIZE'] < 65:
+        return "SMOL"
+    elif settings['CELL_SIZE'] > 65 and settings['CELL_SIZE'] < 135:
+        return "DEFAULT"
+    else:
+        return "BIG"
 
 def init_game():
     global score
     score=0
     game_grid = [str(i) for i in range(
         settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])]
+    settings['CELL_SIZE'] = int(
+        math.sqrt((540*540)//(settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])))
     return game_grid
 
 def add_score(score):
     return score+1
+
+#------------------------------------------------------------
+def change_grid_size(settings):
+    settings['WIDTH_BORDER'] +=1
+    settings['HEIGHT_BORDER'] +=1
+    if settings['WIDTH_BORDER'] > 10:
+        settings['WIDTH_BORDER'] = 3
+    if settings['HEIGHT_BORDER'] > 10:
+        settings['HEIGHT_BORDER'] = 3
+    return settings
