@@ -59,11 +59,17 @@ def init_game():
         settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])]
     settings['CELL_SIZE'] = int(
         math.sqrt((540*540)//(settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])))
+    
     return game_grid
 
 
 def add_score(score):
     return score+1
+
+def quick_cheat(game_grid):
+    game_grid = WINNING_POS
+    return game_grid
+
 
 # ------------------------------------------------------------
 

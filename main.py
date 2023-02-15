@@ -21,8 +21,9 @@ if __name__ == '__main__':
                     state = 'Theme'
                 if RETURN_KEYDOWN(event):
                     game_grid = init_game()
+                    WINNING_POS = [str(i) for i in range(
+                            1, settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])]+['0']
                     dynamic_font_size = modify_dynamic_font_size(settings)
-                    print(settings['CELL_SIZE'])
                     state = 'Game'
                 if X_KEYDOWN(event):
                     settings = change_grid_size(settings)
@@ -35,9 +36,22 @@ if __name__ == '__main__':
                               current_theme, dynamic_font_size)
                     score = add_score(score)
                 if not check_win(game_grid, WINNING_POS):
+                    print(score)
                     state = 'Menu'
                 # ------------------------------------------------------------
-                if BACKSPACE_KEYDOWN(event):
-                        state = 'Menu'
+                if SPACEBAR_KEYDOWN(event):
+                    game_grid=WINNING_POS
+                    draw_grid(settings, game_grid,
+                           current_theme, dynamic_font_size)
                 # ------------------------------------------------------------
+            if state == 'Win':
+
+                for event in events:
+                    running = ESC_KEYDOWN(event)
+                    if BACKSPACE_KEYDOWN(event):
+                        state = 'Menu'
+                    if RETURN_KEYDOWN(event):
+                        game_grid = init_game()
+                        dynamic_font_size = modify_dynamic_font_size(settings)
+                        state = 'Game'
         pygame.display.update()

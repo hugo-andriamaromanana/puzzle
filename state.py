@@ -8,6 +8,9 @@ def ESC_KEYDOWN(event):
         return False
     return True
 
+def SPACEBAR_KEYDOWN(event):
+    if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+        return True
 
 def BACKSPACE_KEYDOWN(event):
     if event.type == pygame.KEYDOWN and event.key == pygame.K_BACKSPACE:
