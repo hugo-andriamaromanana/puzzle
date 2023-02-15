@@ -12,7 +12,7 @@ if __name__ == '__main__':
                 current_theme = change_theme(event, current_theme)
                 running = ESC_KEYDOWN(event)
                 if current_theme != None:
-                    state = 'Menu'
+                    state = 'Win'
         if state == 'Menu':
             draw_menu(current_theme)
             for event in events:
@@ -44,14 +44,14 @@ if __name__ == '__main__':
                     draw_grid(settings, game_grid,
                            current_theme, dynamic_font_size)
                 # ------------------------------------------------------------
-            if state == 'Win':
-
-                for event in events:
-                    running = ESC_KEYDOWN(event)
-                    if BACKSPACE_KEYDOWN(event):
-                        state = 'Menu'
-                    if RETURN_KEYDOWN(event):
-                        game_grid = init_game()
-                        dynamic_font_size = modify_dynamic_font_size(settings)
-                        state = 'Game'
+        if state == 'Win':
+            draw_win(current_theme)
+            for event in events:
+                running = ESC_KEYDOWN(event)
+                if BACKSPACE_KEYDOWN(event):
+                    state = 'Menu'
+                if RETURN_KEYDOWN(event):
+                    game_grid = init_game()
+                    dynamic_font_size = modify_dynamic_font_size(settings)
+                    state = 'Game'
         pygame.display.update()
