@@ -121,8 +121,7 @@ def draw_grid(settings, game_grid, current_theme, dynamic_font_size):
                                                      COLORS['BLACK']), (col * settings['CELL_SIZE']+160+20, row * settings['CELL_SIZE']+20))
 
 
-def draw_win(current_theme):
-    display=['_']*6
+def draw_win(current_theme,display,username,user_set):
     theme = THEME[current_theme]
     fonts = theme['FONTS']
     SCREEN.fill(theme['BACKGROUND'])
@@ -132,10 +131,31 @@ def draw_win(current_theme):
     GAME_DISPLAY.fill(theme['BACKGROUND'])
     GAME_DISPLAY.blit(fonts['BIG'].render('You win!', True, COLORS['BLACK']), (150, 50))
     GAME_DISPLAY.blit(fonts['DEFAULT'].render('Register your name:', True, COLORS['BLACK']), (150, 200))
-    GAME_DISPLAY.blit(fonts['DEFAULT'].render(' '.join(display), True, COLORS['BLACK']), (520, 200))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render(' '.join(display), True, COLORS['BLACK']), (530, 200))
+    if user_set == False:
+        GAME_DISPLAY.blit(fonts['DEFAULT'].render('Press * to save Username', True, COLORS['BLACK']), (150, 300))
+    if user_set:
+        GAME_DISPLAY.blit(fonts['DEFAULT'].render('-Score Saved- Press Enter to continue', True, COLORS['BLACK']), (125, 300))
     GAME_DISPLAY.blit(fonts['DEFAULT'].render(
-        'Press Enter to start a new game', True, COLORS['BLACK']), (150, 300))
+        'Press Esc to quit', True, COLORS['BLACK']), (150, 350))
+
+def draw_pb(current_theme,display,username,user_set):
+    theme = THEME[current_theme]
+    fonts = theme['FONTS']
+    SCREEN.fill(theme['BACKGROUND'])
+    SCREEN.blit(RECTANGLE, (40, 40))
+    RECTANGLE.fill(theme['BORDER'])
+    RECTANGLE.blit(GAME_DISPLAY, (20, 20))
+    GAME_DISPLAY.fill(theme['BACKGROUND'])
+    GAME_DISPLAY.blit(fonts['BIG'].render('Scoreboard', True, COLORS['BLACK']), (150, 50))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render('Press Enter to search your PB', True, COLORS['BLACK']), (150, 300))
     GAME_DISPLAY.blit(fonts['DEFAULT'].render(
         'Press Esc to quit', True, COLORS['BLACK']), (150, 350))
     GAME_DISPLAY.blit(fonts['DEFAULT'].render(
         'Press Backspace to return', True, COLORS['BLACK']), (150, 400))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render(
+        'Press X to change grid size: ', True, COLORS['BLACK']), (150, 450))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render(str(settings['WIDTH_BORDER']) +
+                      'x'+str(settings['HEIGHT_BORDER']), True, COLORS['BLACK']), (400, 500))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render(' '.join(display), True, COLORS['BLACK']), (150, 200))
+    

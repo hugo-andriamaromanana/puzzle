@@ -1,16 +1,40 @@
 {
-    "3X3":{
-        "Livio":3,
-        "Michele":3,
-        "Marco":3,
-        "Giovanni":3,
-        "Gianluca":3
+    "3X3": {
+        "Giovanni": 3,
+        "Gianluca": 3,
+        "A": 100,
+        "test": 300,
+        "testAAAA": 300
     },
-    "4X4":{
-        "Livio":3,
-        "Michele":3,
-        "Marco":3,
-        "Giovanni":3,
-        "Gianluca":3
+    "4X4": {
+        "Livio": 3,
+        "Michele": 3,
+        "Marco": 3
+    },
+    "5X5": {
+        "Livio": 3,
+        "Michele": 3
+    },
+    "6X6": {
+        "Giovanni": 3,
+        "Gianluca": 3
+    },
+    "7X7": {
+        "Livio": 3,
+        "Hugo": 23,
+        "HUgo": 26
+    },
+    "8X8": {
+        "Marco": 3,
+        "Giovanni": 3,
+        "Gianluca": 3
+    },
+    "9X9": {
+        "Giovanni": 3,
+        "Gianluca": 3
+    },
+    "10X10": {
+        "Livio": 3,
+        "Michele": 3
     }
 }

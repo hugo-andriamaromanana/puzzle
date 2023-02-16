@@ -26,6 +26,10 @@ def X_KEYDOWN(event):
     if event.type == pygame.KEYDOWN and event.key == pygame.K_x:
         return True
 
+def S_KEYDOWN(event):
+    if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
+        return True
+
 # ------------------------------------------------------------
 
 

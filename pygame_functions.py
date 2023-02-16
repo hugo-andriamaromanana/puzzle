@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-from data import settings
+from data import settings, dump_data, scores
 import math
 
 # ------------------------------------------------------------
@@ -84,4 +84,32 @@ def change_grid_size(settings):
     return settings
 
 def format_grid_size(settings):
-    return str(settings['WIDTH_BORDER'])+'x'+str(settings['HEIGHT_BORDER'])
+    return str(settings['WIDTH_BORDER'])+'X'+str(settings['HEIGHT_BORDER'])
+
+# ------------------------------------------------------------
+username=''
+display=['_']*8
+def display_username(event,current_theme):
+    global username, display,user_set
+    AUTHORIZED_LETTERS='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    if event.type == pygame.KEYDOWN and current_theme != None:
+        if event.key == K_BACKSPACE and len(username) > 0:
+            username = username[:-1]
+            display[len(username)] = '_'
+        if event.unicode in AUTHORIZED_LETTERS and len(username) < 10:
+            username += (event.unicode).upper()
+            print(username)
+            display[len(username)-1] = (event.unicode).upper()
+        if event.key == K_RETURN:
+            display=[str(i) for i in username]
+            user_set=True
+
+def save_score(scores,username,score):
+    if username not in [i for i in scores[format_grid_size(settings)]]:
+        scores[format_grid_size(settings)][username]=score
+    else:
+        if score > scores[format_grid_size(settings)][username]:
+            scores[format_grid_size(settings)][username]=score
+    dump_data('best_scores',scores)
+
+save_score(scores,'testAAAA',300)
