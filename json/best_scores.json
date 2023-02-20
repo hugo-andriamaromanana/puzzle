@@ -28,12 +28,15 @@
     "8X8": {
         "YELLOW": 50,
         "PURPLE": 66,
-        "ORANGE": 83
+        "ORANGE": 83,
+        "ALEX": 93,
+        "LOLOL": 1
     },
     "9X9": {
         "PINK": 50,
         "BROWN": 66,
-        "WHITE": 83
+        "WHITE": 83,
+        "BU": 2
     },
     "10X10": {
         "GRAY": 50,

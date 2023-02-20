@@ -60,20 +60,18 @@ def init_game():
         settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])]
     settings['CELL_SIZE'] = int(
         math.sqrt((540*540)//(settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])))
-    
+
     return game_grid
 
 
 def add_score(score):
     return score+1
 
+
 def quick_cheat(game_grid):
     if score > 10:
         game_grid = WINNING_POS
         return game_grid
-
-
-# ------------------------------------------------------------
 
 
 def change_grid_size(settings):
@@ -85,29 +83,32 @@ def change_grid_size(settings):
         settings['HEIGHT_BORDER'] = 3
     return settings
 
+
 def format_grid_size(settings):
     return str(settings['WIDTH_BORDER'])+'X'+str(settings['HEIGHT_BORDER'])
 
-def shuffle_grid(game_grid):
-    #Starting from the last tile, swap it with a random tile before it
-    for i in range(len(game_grid)-1,0,-1):
-        j = random.randint(0,i)
-        game_grid[i],game_grid[j] = game_grid[j],game_grid[i]
-    return game_grid
-        
 
-# ------------------------------------------------------------
-username=''
-display=['_']*8
+def shuffle_grid(game_grid):
+    # Starting from the last tile, swap it with a random tile before it
+    for i in range(len(game_grid)-1, 0, -1):
+        j = random.randint(0, i)
+        game_grid[i], game_grid[j] = game_grid[j], game_grid[i]
+    return game_grid
+
+
+username = ''
+display = ['_']*8
+
 
 def reset_username():
-    global username,display
-    username=''
-    display=['_']*8
-
-def display_username(event,current_theme):
     global username, display
-    AUTHORIZED_LETTERS='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    username = ''
+    display = ['_']*8
+
+
+def display_username(event, current_theme):
+    global username, display
+    AUTHORIZED_LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     if event.type == pygame.KEYDOWN and current_theme != None:
         if event.key == K_BACKSPACE and len(username) > 0:
             username = username[:-1]
@@ -116,11 +117,11 @@ def display_username(event,current_theme):
             username += (event.unicode).upper()
             display[len(username)-1] = (event.unicode).upper()
 
-def save_score(scores,username,score):
+
+def save_score(scores, username, score):
     if username not in [i for i in scores[format_grid_size(settings)]]:
-        scores[format_grid_size(settings)][username]=score
+        scores[format_grid_size(settings)][username] = score
     else:
         if score < scores[format_grid_size(settings)][username]:
-            scores[format_grid_size(settings)][username]=score
-    dump_data('best_scores',scores)
-
+            scores[format_grid_size(settings)][username] = score
+    dump_data('best_scores', scores)

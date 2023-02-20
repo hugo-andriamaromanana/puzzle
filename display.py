@@ -109,8 +109,10 @@ def draw_grid(settings, game_grid, current_theme, dynamic_font_size):
     active_font = fonts[dynamic_font_size]
     SCREEN.fill(theme['BACKGROUND'])
     SCREEN.blit(RECTANGLE, (40, 40))
-    SCREEN.blit(fonts['DEFAULT'].render('Press TAB to shuffle', True,COLORS['BLACK']), (10, 5))
-    SCREEN.blit(fonts['DEFAULT'].render('Press SPACE to quick solve', True,COLORS['BLACK']), (450, 5))
+    SCREEN.blit(fonts['DEFAULT'].render(
+        'Press TAB to shuffle', True, COLORS['BLACK']), (10, 5))
+    SCREEN.blit(fonts['DEFAULT'].render(
+        'Press SPACE to quick solve', True, COLORS['BLACK']), (450, 5))
     RECTANGLE.fill(theme['BORDER'])
     RECTANGLE.blit(GAME_DISPLAY, (20, 20))
     GAME_DISPLAY.fill(theme['BACKGROUND'])
@@ -123,7 +125,7 @@ def draw_grid(settings, game_grid, current_theme, dynamic_font_size):
                                                      COLORS['BLACK']), (col * settings['CELL_SIZE']+160+20, row * settings['CELL_SIZE']+20))
 
 
-def draw_win(current_theme,display):
+def draw_win(current_theme, display):
     theme = THEME[current_theme]
     fonts = theme['FONTS']
     SCREEN.fill(theme['BACKGROUND'])
@@ -131,14 +133,19 @@ def draw_win(current_theme,display):
     RECTANGLE.fill(theme['BORDER'])
     RECTANGLE.blit(GAME_DISPLAY, (20, 20))
     GAME_DISPLAY.fill(theme['BACKGROUND'])
-    GAME_DISPLAY.blit(fonts['BIG'].render('You win!', True, COLORS['BLACK']), (150, 50))
-    GAME_DISPLAY.blit(fonts['DEFAULT'].render('Register your name:', True, COLORS['BLACK']), (150, 200))
-    GAME_DISPLAY.blit(fonts['DEFAULT'].render(' '.join(display), True, COLORS['BLACK']), (530, 200))
-    GAME_DISPLAY.blit(fonts['DEFAULT'].render('Press TAB to save Username', True, COLORS['BLACK']), (150, 300))
+    GAME_DISPLAY.blit(fonts['BIG'].render(
+        'You win!', True, COLORS['BLACK']), (150, 50))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render(
+        'Register your name:', True, COLORS['BLACK']), (150, 200))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render(
+        ' '.join(display), True, COLORS['BLACK']), (530, 200))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render(
+        'Press TAB to save Username', True, COLORS['BLACK']), (150, 300))
     GAME_DISPLAY.blit(fonts['DEFAULT'].render(
         'Press Esc to quit', True, COLORS['BLACK']), (150, 350))
 
-def draw_pb(current_theme,display,pB):
+
+def draw_pb(current_theme, display, pB):
     theme = THEME[current_theme]
     fonts = theme['FONTS']
     SCREEN.fill(theme['BACKGROUND'])
@@ -146,8 +153,10 @@ def draw_pb(current_theme,display,pB):
     RECTANGLE.fill(theme['BORDER'])
     RECTANGLE.blit(GAME_DISPLAY, (20, 20))
     GAME_DISPLAY.fill(theme['BACKGROUND'])
-    GAME_DISPLAY.blit(fonts['BIG'].render('Scoreboard', True, COLORS['BLACK']), (150, 50))
-    GAME_DISPLAY.blit(fonts['DEFAULT'].render('Press Enter to search your PB', True, COLORS['BLACK']), (150, 300))
+    GAME_DISPLAY.blit(fonts['BIG'].render(
+        'Scoreboard', True, COLORS['BLACK']), (150, 50))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render(
+        'Press Enter to search your PB', True, COLORS['BLACK']), (150, 300))
     GAME_DISPLAY.blit(fonts['DEFAULT'].render(
         'Press Esc to quit', True, COLORS['BLACK']), (150, 350))
     GAME_DISPLAY.blit(fonts['DEFAULT'].render(
@@ -156,5 +165,7 @@ def draw_pb(current_theme,display,pB):
         'Press SPACE to change grid size: ', True, COLORS['BLACK']), (150, 450))
     GAME_DISPLAY.blit(fonts['DEFAULT'].render(str(settings['WIDTH_BORDER']) +
                       'x'+str(settings['HEIGHT_BORDER']), True, COLORS['BLACK']), (400, 500))
-    GAME_DISPLAY.blit(fonts['DEFAULT'].render(' '.join(display), True, COLORS['BLACK']), (150, 200))
-    GAME_DISPLAY.blit(fonts['DEFAULT'].render(pB, True, COLORS['BLACK']), (450, 200))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render(
+        ' '.join(display), True, COLORS['BLACK']), (150, 200))
+    GAME_DISPLAY.blit(fonts['DEFAULT'].render(
+        pB, True, COLORS['BLACK']), (450, 200))
