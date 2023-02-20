@@ -38,6 +38,8 @@ if __name__ == '__main__':
                     score = add_score(score)
                 if not check_win(game_grid, WINNING_POS):
                     state = 'Win'
+                if BACKSPACE_KEYDOWN(event):
+                    state = 'Menu'
                 if TAB_KEYDOWN(event):
                     game_grid = shuffle_grid(game_grid)
                     score = 0

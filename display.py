@@ -1,7 +1,7 @@
 from pygame_functions import *
 from colors import COLORS
 import os
-from data import settings, scores
+from data import settings
 import math
 
 pygame.init()
@@ -36,14 +36,50 @@ THEME = {
         }
     },
     'DARK': {
-        'BACKGROUND': COLORS['BLACK'],
-        'BORDER': COLORS['GREY'],
+        'BACKGROUND': COLORS['GREY'],
+        'BORDER': COLORS['BLACK'],
         'FONTS': {
-            'SMOL': pygame.font.Font(os.path.join('fonts', 'Retrolab.ttf'), 20),
-            'DEFAULT': pygame.font.Font(os.path.join('fonts', 'Retrolab.ttf'), 30),
-            'BIG': pygame.font.Font(os.path.join('fonts', 'Retrolab.ttf'), 100)
+            'SMOL': pygame.font.Font(os.path.join('fonts', 'Retrolab.ttf'), 30),
+            'DEFAULT': pygame.font.Font(os.path.join('fonts', 'Retrolab.ttf'), 40),
+            'BIG': pygame.font.Font(os.path.join('fonts', 'Retrolab.ttf'), 90)
         }
     },
+    'FLASH':{
+        'BACKGROUND': COLORS['GOLD'],
+        'BORDER': COLORS['SILVER'],
+        'FONTS': {
+            'SMOL': pygame.font.Font(os.path.join('fonts', 'Flash.otf'), 35),
+            'DEFAULT': pygame.font.Font(os.path.join('fonts', 'Flash.otf'), 50),
+            'BIG': pygame.font.Font(os.path.join('fonts', 'Flash.otf'), 100)
+        }
+    },
+    'WOOD':{
+        'BACKGROUND': COLORS['WOOD'],
+        'BORDER': COLORS['WOOD2'],
+        'FONTS': {
+            'SMOL': pygame.font.Font(os.path.join('fonts', 'Wood.otf'), 20),
+            'DEFAULT': pygame.font.Font(os.path.join('fonts', 'Wood.otf'), 30),
+            'BIG': pygame.font.Font(os.path.join('fonts', 'Wood.otf'), 80)
+        }
+    },
+    'FUNKY':{
+        'BACKGROUND': COLORS['GREEN'],
+        'BORDER': COLORS['RED'],
+        'FONTS': {
+            'SMOL': pygame.font.Font(os.path.join('fonts', 'Funky.otf'), 20),
+            'DEFAULT': pygame.font.Font(os.path.join('fonts', 'Funky.otf'), 30),
+            'BIG': pygame.font.Font(os.path.join('fonts', 'Funky.otf'), 80)
+        }
+    },
+    'GRANDIOUS':{
+        'BACKGROUND': COLORS['GOLD'],
+        'BORDER': COLORS['BRONZE'],
+        'FONTS': {
+            'SMOL': pygame.font.Font(os.path.join('fonts', 'Grandious.otf'), 30),
+            'DEFAULT': pygame.font.Font(os.path.join('fonts', 'Grandious.otf'), 40),
+            'BIG': pygame.font.Font(os.path.join('fonts', 'Grandious.otf'), 90)
+        }
+    }
 }
 
 
@@ -64,13 +100,22 @@ def display_select_theme(current_theme):
     GAME_DISPLAY.fill(theme['BACKGROUND'])
     GAME_DISPLAY.blit(fonts['BIG'].render(
         'Select Theme:', True, COLORS['WHITE']), (150, 10))
-    GAME_DISPLAY.blit(THEME['RETRO']['FONTS']['DEFAULT'].render(
-        'Press 1 for Retro', True, COLORS['WHITE']), (250, 250))
-    GAME_DISPLAY.blit(THEME['CLASSIC']['FONTS']['DEFAULT'].render(
-        'Press 2 for Classic', True, COLORS['WHITE']), (250, 325))
-    GAME_DISPLAY.blit(THEME['NEON']['FONTS']['DEFAULT'].render(
-        'Press 3 for Neon', True, COLORS['WHITE']), (250, 425))
-
+    GAME_DISPLAY.blit(THEME['RETRO']['FONTS']['SMOL'].render(
+        'Press 1 for Retro', True, COLORS['WHITE']), (250, 160))
+    GAME_DISPLAY.blit(THEME['CLASSIC']['FONTS']['SMOL'].render(
+        'Press 2 for Classic', True, COLORS['WHITE']), (250, 200))
+    GAME_DISPLAY.blit(THEME['NEON']['FONTS']['SMOL'].render(
+        'Press 3 for Neon', True, COLORS['WHITE']), (250, 250))
+    GAME_DISPLAY.blit(THEME['DARK']['FONTS']['SMOL'].render(
+        'Press 4 for Dark', True, COLORS['WHITE']), (250, 300))
+    GAME_DISPLAY.blit(THEME['FLASH']['FONTS']['SMOL'].render(
+        'Press 5 for Flash', True, COLORS['WHITE']), (250, 350))
+    GAME_DISPLAY.blit(THEME['WOOD']['FONTS']['SMOL'].render(
+        'Press 6 for Wood', True, COLORS['WHITE']), (250, 400))
+    GAME_DISPLAY.blit(THEME['FUNKY']['FONTS']['SMOL'].render(
+        'Press 7 for Funky', True, COLORS['WHITE']), (250, 450))
+    GAME_DISPLAY.blit(THEME['GRANDIOUS']['FONTS']['SMOL'].render(
+        'Press 8 for Grandious', True, COLORS['WHITE']), (250, 500))
 
 def draw_menu(current_theme):
     theme = THEME[current_theme]
@@ -109,9 +154,9 @@ def draw_grid(settings, game_grid, current_theme, dynamic_font_size):
     active_font = fonts[dynamic_font_size]
     SCREEN.fill(theme['BACKGROUND'])
     SCREEN.blit(RECTANGLE, (40, 40))
-    SCREEN.blit(fonts['DEFAULT'].render(
+    SCREEN.blit(fonts['SMOL'].render(
         'Press TAB to shuffle', True, COLORS['BLACK']), (10, 5))
-    SCREEN.blit(fonts['DEFAULT'].render(
+    SCREEN.blit(fonts['SMOL'].render(
         'Press SPACE to quick solve', True, COLORS['BLACK']), (450, 5))
     RECTANGLE.fill(theme['BORDER'])
     RECTANGLE.blit(GAME_DISPLAY, (20, 20))

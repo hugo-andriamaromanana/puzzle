@@ -16,6 +16,16 @@ def change_theme(event, current_theme):
         current_theme = 'CLASSIC'
     if event.type == pygame.KEYDOWN and event.unicode == '3':
         current_theme = 'NEON'
+    if event.type == pygame.KEYDOWN and event.unicode == '4':
+        current_theme = 'DARK'
+    if event.type == pygame.KEYDOWN and event.unicode == '5':
+        current_theme = 'FLASH'
+    if event.type == pygame.KEYDOWN and event.unicode == '6':
+        current_theme = 'WOOD'
+    if event.type == pygame.KEYDOWN and event.unicode == '7':
+        current_theme = 'FUNKY'
+    if event.type == pygame.KEYDOWN and event.unicode == '8':
+        current_theme = 'GRANDIOUS'
     return current_theme
 
 

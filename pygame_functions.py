@@ -89,7 +89,6 @@ def format_grid_size(settings):
 
 
 def shuffle_grid(game_grid):
-    # Starting from the last tile, swap it with a random tile before it
     for i in range(len(game_grid)-1, 0, -1):
         j = random.randint(0, i)
         game_grid[i], game_grid[j] = game_grid[j], game_grid[i]
