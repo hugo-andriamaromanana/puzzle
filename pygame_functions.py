@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from data import settings, dump_data, scores
 import math
+import random
 
 # ------------------------------------------------------------
 AUTHORIZED_KEYS = [K_DOWN, K_UP, K_LEFT, K_RIGHT]
@@ -67,8 +68,9 @@ def add_score(score):
     return score+1
 
 def quick_cheat(game_grid):
-    game_grid = WINNING_POS
-    return game_grid
+    if score > 10:
+        game_grid = WINNING_POS
+        return game_grid
 
 
 # ------------------------------------------------------------
@@ -86,11 +88,25 @@ def change_grid_size(settings):
 def format_grid_size(settings):
     return str(settings['WIDTH_BORDER'])+'X'+str(settings['HEIGHT_BORDER'])
 
+def shuffle_grid(game_grid):
+    #Starting from the last tile, swap it with a random tile before it
+    for i in range(len(game_grid)-1,0,-1):
+        j = random.randint(0,i)
+        game_grid[i],game_grid[j] = game_grid[j],game_grid[i]
+    return game_grid
+        
+
 # ------------------------------------------------------------
 username=''
 display=['_']*8
+
+def reset_username():
+    global username,display
+    username=''
+    display=['_']*8
+
 def display_username(event,current_theme):
-    global username, display,user_set
+    global username, display
     AUTHORIZED_LETTERS='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     if event.type == pygame.KEYDOWN and current_theme != None:
         if event.key == K_BACKSPACE and len(username) > 0:
@@ -98,18 +114,13 @@ def display_username(event,current_theme):
             display[len(username)] = '_'
         if event.unicode in AUTHORIZED_LETTERS and len(username) < 10:
             username += (event.unicode).upper()
-            print(username)
             display[len(username)-1] = (event.unicode).upper()
-        if event.key == K_RETURN:
-            display=[str(i) for i in username]
-            user_set=True
 
 def save_score(scores,username,score):
     if username not in [i for i in scores[format_grid_size(settings)]]:
         scores[format_grid_size(settings)][username]=score
     else:
-        if score > scores[format_grid_size(settings)][username]:
+        if score < scores[format_grid_size(settings)][username]:
             scores[format_grid_size(settings)][username]=score
     dump_data('best_scores',scores)
 
-save_score(scores,'testAAAA',300)

@@ -3,7 +3,6 @@ from state import *
 if __name__ == '__main__':
     state = 'Theme'
     running = True
-    user_set=False
     while running:
         events = pygame.event.get()
         if state == 'Theme':
@@ -26,9 +25,9 @@ if __name__ == '__main__':
                             1, settings['WIDTH_BORDER']*settings['HEIGHT_BORDER'])]+['0']
                     dynamic_font_size = modify_dynamic_font_size(settings)
                     state = 'Game'
-                if X_KEYDOWN(event):
+                if SPACEBAR_KEYDOWN(event):
                     settings = change_grid_size(settings)
-                if S_KEYDOWN(event):
+                if STAR_KEYDOWN(event):
                     state = 'PB'
         if state == 'Game':
             draw_grid(settings, game_grid, current_theme, dynamic_font_size)
@@ -40,6 +39,9 @@ if __name__ == '__main__':
                     score = add_score(score)
                 if not check_win(game_grid, WINNING_POS):
                     state = 'Win'
+                if TAB_KEYDOWN(event):
+                    game_grid=shuffle_grid(game_grid)
+                    score=0
                 # ------------------------------------------------------------
                 if SPACEBAR_KEYDOWN(event):
                     game_grid=WINNING_POS
@@ -47,19 +49,26 @@ if __name__ == '__main__':
                            current_theme, dynamic_font_size)
                 # ------------------------------------------------------------
         if state == 'Win':  
-            draw_win(current_theme,display,username,user_set)
+            draw_win(current_theme,display)
             for event in events:
                 running = ESC_KEYDOWN(event)
-                display_username(event,user_set)
-                if RETURN_KEYDOWN(event):
+                display_username(event,current_theme)
+                if TAB_KEYDOWN(event):
                     save_score(scores,(''.join([i for i in display if i != '_'])),score)
                     score=0
                     game_grid = init_game()
-                    state = 'Theme'
-        if state =='PB':
-            draw_pb(current_theme,display,username,user_set)
-            for event in events:
-                running = ESC_KEYDOWN(event)
-                if BACKSPACE_KEYDOWN(event):
                     state = 'Menu'
+        if state =='PB':
+            draw_pb(current_theme,display,pB)
+            for event in events:
+                display_username(event,current_theme)
+                running = ESC_KEYDOWN(event)
+                if RETURN_KEYDOWN(event):
+                    pB=find_PB((''.join([i for i in display if i != '_'])),format_grid_size(settings))
+                    print(pB)
+                if TAB_KEYDOWN(event):
+                    state='Menu'
+                if SPACEBAR_KEYDOWN(event):
+                    settings = change_grid_size(settings)
         pygame.display.update()
+
