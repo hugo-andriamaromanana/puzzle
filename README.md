@@ -14,16 +14,19 @@ This is a sliding puzzle game implemented in Python using the Pygame library. Th
 ### INSTALLATION
 
 - Clone the repository
+
 ```bash
 git clone https://github.com/hugo-andriamaromanana/puzzle.git
 ```
 
 - Install the dependencies
+
 ```bash
 pip install pygame
 ```
 
 - Run the game
+
 ```bash
 python main.py
 ```

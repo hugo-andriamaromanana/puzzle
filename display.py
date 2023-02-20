@@ -44,7 +44,7 @@ THEME = {
             'BIG': pygame.font.Font(os.path.join('fonts', 'Retrolab.ttf'), 90)
         }
     },
-    'FLASH':{
+    'FLASH': {
         'BACKGROUND': COLORS['GOLD'],
         'BORDER': COLORS['SILVER'],
         'FONTS': {
@@ -53,7 +53,7 @@ THEME = {
             'BIG': pygame.font.Font(os.path.join('fonts', 'Flash.otf'), 100)
         }
     },
-    'WOOD':{
+    'WOOD': {
         'BACKGROUND': COLORS['WOOD'],
         'BORDER': COLORS['WOOD2'],
         'FONTS': {
@@ -62,7 +62,7 @@ THEME = {
             'BIG': pygame.font.Font(os.path.join('fonts', 'Wood.otf'), 80)
         }
     },
-    'FUNKY':{
+    'FUNKY': {
         'BACKGROUND': COLORS['GREEN'],
         'BORDER': COLORS['RED'],
         'FONTS': {
@@ -71,7 +71,7 @@ THEME = {
             'BIG': pygame.font.Font(os.path.join('fonts', 'Funky.otf'), 80)
         }
     },
-    'GRANDIOUS':{
+    'GRANDIOUS': {
         'BACKGROUND': COLORS['GOLD'],
         'BORDER': COLORS['BRONZE'],
         'FONTS': {
@@ -116,6 +116,7 @@ def display_select_theme(current_theme):
         'Press 7 for Funky', True, COLORS['WHITE']), (250, 450))
     GAME_DISPLAY.blit(THEME['GRANDIOUS']['FONTS']['SMOL'].render(
         'Press 8 for Grandious', True, COLORS['WHITE']), (250, 500))
+
 
 def draw_menu(current_theme):
     theme = THEME[current_theme]

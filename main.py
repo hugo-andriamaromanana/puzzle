@@ -5,6 +5,7 @@ if __name__ == '__main__':
     running = True
     while running:
         events = pygame.event.get()
+
         if state == 'Theme':
             current_theme = None
             state_theme_select()
@@ -12,6 +13,7 @@ if __name__ == '__main__':
                 current_theme = change_theme(event, current_theme)
                 running = ESC_KEYDOWN(event)
                 state = go_to_menu(current_theme, state)
+
         if state == 'Menu':
             draw_menu(current_theme)
             for event in events:
@@ -28,6 +30,7 @@ if __name__ == '__main__':
                     settings = change_grid_size(settings)
                 if STAR_KEYDOWN(event):
                     state = 'PB'
+
         if state == 'Game':
             draw_grid(settings, game_grid, current_theme, dynamic_font_size)
             for event in events:
@@ -47,6 +50,7 @@ if __name__ == '__main__':
                     game_grid = WINNING_POS
                     draw_grid(settings, game_grid,
                               current_theme, dynamic_font_size)
+
         if state == 'Win':
             draw_win(current_theme, display)
             for event in events:
@@ -58,6 +62,7 @@ if __name__ == '__main__':
                     score = 0
                     game_grid = init_game()
                     state = 'Menu'
+
         if state == 'PB':
             draw_pb(current_theme, display, pB)
             for event in events:
@@ -70,4 +75,5 @@ if __name__ == '__main__':
                     state = 'Menu'
                 if SPACEBAR_KEYDOWN(event):
                     settings = change_grid_size(settings)
+                    
         pygame.display.update()

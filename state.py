@@ -1,13 +1,16 @@
 from display import *
 from keydowns import *
 
+
 def state_theme_select():
     current_theme = 'DARK'
     display_select_theme(current_theme)
 
+
 def go_to_menu(current_theme):
     if current_theme != None:
         return 'Menu'
+
 
 def change_theme(event, current_theme):
     if event.type == pygame.KEYDOWN and event.unicode == '1':
@@ -30,6 +33,7 @@ def change_theme(event, current_theme):
 
 
 pB = 'Search for a user'
+
 
 def find_PB(username, setting):
     if username in scores[setting]:
